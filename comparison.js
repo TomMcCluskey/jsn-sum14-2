@@ -1,5 +1,5 @@
 function copy(obj) {
-    objCopy = {}; //is this the best way to have a function make a global variable?
+    var objCopy = {}; //made local; global isn't important.
     for (property in obj) {
         objCopy[property] = obj[property];
     }
@@ -26,7 +26,15 @@ function equal(objA, objB) {
 }
 
 function similar(objA, objB) {
-    
+    function compare(first, second) {
+        for (property in first) {
+            if (!second.hasOwnProperty(property)) {
+                return false;
+                }
+        }
+        return true;
+    }
+    return compare(objA, objB) && compare(objB, objA);
 }
 
 function union(objA, objB) {
