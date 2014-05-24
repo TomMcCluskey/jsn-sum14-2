@@ -61,7 +61,13 @@ function intersect(objA, objB) {
 }
 
 function subtract(objA, objB) {
-    
+    var newObj = {};
+    for (property in objA) {
+        if (!objB.hasOwnProperty(property)) {
+            newObj[property] = (objA[property]);
+        }
+    }
+    return newObj;
 }
 
 
