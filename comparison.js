@@ -38,7 +38,15 @@ function similar(objA, objB) {
 }
 
 function union(objA, objB) {
-    
+    var newObj = {};
+    function getProps(source, destination) {
+        for (property in source) {
+            destination[property] = source[property];
+        }
+    }
+    getProps (objB, newObj);
+    getProps (objA, newObj);
+    return newObj;
 }
 
 function intersect(objA, objB) {
