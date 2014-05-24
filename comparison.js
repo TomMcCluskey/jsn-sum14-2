@@ -50,7 +50,14 @@ function union(objA, objB) {
 }
 
 function intersect(objA, objB) {
-    
+    var newObj = {};
+    for (property in objA) {
+        console.log(property);
+        if (objB.hasOwnProperty(property)) {
+            newObj[property] = (objA[property] && objB[property]);
+        }
+    }
+    return newObj
 }
 
 function subtract(objA, objB) {
