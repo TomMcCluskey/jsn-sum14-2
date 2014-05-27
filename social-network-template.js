@@ -53,6 +53,28 @@ people.friendsOf = function(name) {
     }
 }
 
+function union(objA, objB) {
+    var newObj = {};
+    function getProps(source, destination) {
+        for (property in source) {
+            destination[property] = source[property];
+        }
+    }
+    getProps (objB, newObj);
+    getProps (objA, newObj);
+    return newObj;
+}
+
+people.friendsOfFriendsOf = function(name) {
+    var fofList = people.index[name]['friends'], final = [];
+    for (friend in people.index[name]['friends']) {
+        fofList = union(fofList, people.index[friend]['friends']);
+    }
+    for (name in fofList) {
+        final.push(name);
+    }
+    return final.sort().join();
+}
 
 function assert(claim,message) {
     if (!claim) {console.error(message);} else {console.log('all good!');}
