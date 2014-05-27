@@ -37,14 +37,20 @@ people.haveMet = function(nameA,nameB) {
 	if (people.index[nameA]['friends'][nameB]) {
         return people.index[nameA].friends[nameB];
     } else {
-        console.log(people.index[nameA]);
-        console.log('nope!');
         return 0;
     }
 }
 
 people.friendsOf = function(name) {
-	//...
+	if (!people.index[name]) {
+        return undefined;
+    } else {
+        var friendList = [];
+        for (property in people.index[name]['friends']) {
+            friendList.push(property);
+        }
+        return friendList.sort().join();
+    }
 }
 
 
